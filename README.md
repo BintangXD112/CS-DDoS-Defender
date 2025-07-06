@@ -137,12 +137,4 @@ Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
 
 ---
 
-## Kontak
-
-- **Author:** [Nama Anda]
-- **Email:** your.email@example.com
-- **GitHub:** [https://github.com/username/CSharpDefender](https://github.com/username/CSharpDefender)
-
----
-
 **CSharp Defender** — Perlindungan aplikasi web Anda dari serangan siber secara mudah dan efisien.
