@@ -19,13 +19,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseMiddleware<WhitelistMiddleware>();
 app.UseMiddleware<BlocklistMiddleware>();
-app.UseMiddleware<RateLimiterMiddleware>();
+app.UseMiddleware<RateLimiterMiddleware>(app.Configuration);
 app.UseMiddleware<ConnectionLimitMiddleware>();
 app.UseMiddleware<UserAgentBlockMiddleware>();
 app.UseMiddleware<PathBlockerMiddleware>();
 app.UseMiddleware<GeoIpBlockMiddleware>();
 app.UseMiddleware<MaintenanceMiddleware>();
-app.UseMiddleware<LoggerMiddleware>();
+app.UseMiddleware<LoggerMiddleware>(app.Configuration);
 app.UseMiddleware<JsChallengeMiddleware>();
 app.UseMiddleware<CaptchaMiddleware>();
 app.UseMiddleware<TokenLimiterMiddleware>();
