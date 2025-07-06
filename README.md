@@ -33,26 +33,33 @@ Simple storng AntiDDoS using csharp
 Edit file `appsettings.json` atau `appsettings.Development.json` untuk mengatur:
 
 - Daftar blocklist/whitelist IP
-- Pengaturan rate limiter
+- Pengaturan rate limiter (limit & window)
+- Logging ke file
 - Negara yang diblokir (GeoIP)
 - Mode pemeliharaan
 - Webhook URL, dsb.
 
-**Contoh konfigurasi:**
+**Contoh konfigurasi terbaru:**
 ```json
 {
-  "RateLimiter": {
-    "RequestsPerMinute": 100
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
   },
-  "GeoIp": {
-    "BlockedCountries": [ "CN", "RU" ]
-  },
-  "Maintenance": {
-    "Enabled": false,
-    "Message": "Situs sedang dalam pemeliharaan. Silakan kembali nanti."
-  },
-  "Webhook": {
-    "Url": "https://your-webhook-url"
+  "AllowedHosts": "*",
+  "AntiDDoS": {
+    "RateLimiter": {
+      "Limit": 100,
+      "WindowMinutes": 10
+    },
+    "Blocklist": [],
+    "Whitelist": [],
+    "Logger": {
+      "LogToFile": true,
+      "LogFilePath": "logs/requests.log"
+    }
   }
 }
 ```
@@ -75,7 +82,7 @@ Beberapa endpoint API yang tersedia (cek folder `Controllers/` untuk detail):
 - `DELETE /api/blocklist/{ip}` — Hapus IP dari blocklist
 - `GET /api/blocklist` — Lihat daftar blocklist
 - `POST /api/whitelist` — Tambah IP ke whitelist
-- `GET /api/stats` — Statistik serangan & request
+- `GET /api/stats` — Statistik serangan & request (jumlah blocklist, whitelist, rate limit triggered, total request)
 - `POST /api/maintenance` — Aktifkan/nonaktifkan mode pemeliharaan
 - `POST /api/captcha/verify` — Verifikasi captcha
 
@@ -106,6 +113,13 @@ app.UseMiddleware<ConnectionLimitMiddleware>();
 app.UseMiddleware<MaintenanceMiddleware>();
 // ...middleware lain sesuai kebutuhan
 ```
+
+---
+
+## Fitur Statistik & Logging
+
+- Statistik serangan dapat diakses melalui endpoint `/api/stats`.
+- Logger dapat mencatat request/response ke file jika diaktifkan di konfigurasi.
 
 ---
 
