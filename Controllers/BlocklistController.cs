@@ -1,3 +1,4 @@
+using CSharpDefender.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace CSharpDefender.Controllers
     public class BlocklistController : ControllerBase
     {
         // Simulasi blocklist IP (in-memory)
-        private static HashSet<string> BlockedIps = new HashSet<string>();
+        private static readonly HashSet<string> BlockedIps = new HashSet<string>();
 
         [HttpGet]
         public IActionResult GetBlockedIps()
@@ -17,12 +18,12 @@ namespace CSharpDefender.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBlockedIp([FromBody] string ip)
+        public IActionResult AddBlockedIp([FromBody] IpModel model)
         {
-            if (string.IsNullOrWhiteSpace(ip))
+            if (model is null || string.IsNullOrWhiteSpace(model.Ip))
                 return BadRequest("IP tidak valid");
-            BlockedIps.Add(ip);
-            return Ok(new { message = $"IP {ip} diblokir." });
+            BlockedIps.Add(model.Ip);
+            return Ok(new { message = $"IP {model.Ip} diblokir." });
         }
     }
 } 
