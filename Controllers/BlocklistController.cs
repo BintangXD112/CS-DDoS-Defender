@@ -9,7 +9,7 @@ namespace CSharpDefender.Controllers
     public class BlocklistController : ControllerBase
     {
         // Simulasi blocklist IP (in-memory)
-        private static readonly HashSet<string> BlockedIps = new HashSet<string>();
+        internal static readonly HashSet<string> BlockedIps = new HashSet<string>();
 
         [HttpGet]
         public IActionResult GetBlockedIps()

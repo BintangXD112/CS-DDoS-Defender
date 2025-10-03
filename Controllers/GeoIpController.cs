@@ -7,7 +7,7 @@ namespace CSharpDefender.Controllers
     [Route("api/[controller]")]
     public class GeoIpController : ControllerBase
     {
-        private static HashSet<string> BlockedCountries = new HashSet<string>();
+        internal static HashSet<string> BlockedCountries = new HashSet<string>();
 
         [HttpGet]
         public IActionResult GetBlockedCountries()

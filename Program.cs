@@ -16,7 +16,6 @@ if (app.Environment.IsDevelopment())
 }
 
 // TODO: Tambahkan middleware Blocklist di sini
-app.UseHttpsRedirection();
 app.UseMiddleware<WhitelistMiddleware>();
 app.UseMiddleware<BlocklistMiddleware>();
 app.UseMiddleware<RateLimiterMiddleware>(app.Configuration);
@@ -26,8 +25,8 @@ app.UseMiddleware<PathBlockerMiddleware>();
 app.UseMiddleware<GeoIpBlockMiddleware>();
 app.UseMiddleware<MaintenanceMiddleware>();
 app.UseMiddleware<LoggerMiddleware>(app.Configuration);
-app.UseMiddleware<JsChallengeMiddleware>();
-app.UseMiddleware<CaptchaMiddleware>();
+// app.UseMiddleware<JsChallengeMiddleware>();
+// app.UseMiddleware<CaptchaMiddleware>();
 app.UseMiddleware<TokenLimiterMiddleware>();
 app.UseMiddleware<PatternAnalysisMiddleware>();
 
@@ -58,3 +57,5 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+public partial class Program { }

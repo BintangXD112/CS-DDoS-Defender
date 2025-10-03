@@ -11,6 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="CSharpDefender.Tests\**" />
+    <Content Remove="CSharpDefender.Tests\**" />
+    <EmbeddedResource Remove="CSharpDefender.Tests\**" />
+    <None Remove="CSharpDefender.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

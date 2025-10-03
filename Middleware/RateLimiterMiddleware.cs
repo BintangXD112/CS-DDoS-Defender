@@ -12,6 +12,7 @@ namespace CSharpDefender.Middleware
         private static readonly ConcurrentDictionary<string, (int Count, DateTime WindowStart)> Requests = new();
         private readonly int _limit;
         private readonly TimeSpan _window;
+        public static int RateLimitTriggeredCount { get; private set; }
 
         public RateLimiterMiddleware(RequestDelegate next, IConfiguration configuration)
         {
@@ -23,7 +24,6 @@ namespace CSharpDefender.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            RateLimiterStats.TotalRequests++;
             var ip = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
             var now = DateTime.UtcNow;
             var (count, windowStart) = Requests.GetOrAdd(ip, _ => (0, now));
@@ -35,7 +35,7 @@ namespace CSharpDefender.Middleware
             {
                 if (count >= _limit)
                 {
-                    RateLimiterStats.Triggered++;
+                    RateLimitTriggeredCount++;
                     context.Response.StatusCode = 429;
                     await context.Response.WriteAsync("Rate limit exceeded.");
                     return;

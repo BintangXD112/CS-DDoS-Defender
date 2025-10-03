@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZcDKbnf/yek=",
+  "dgSpecHash": "3u+2anOBO0w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\LENOVO\\OneDrive\\Documents\\httpjs\\C#_Defender\\CSharpDefender.csproj",
+  "projectFilePath": "/app/CSharpDefender.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.6\\microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "/home/jules/.nuget/packages/microsoft.aspnetcore.openapi/9.0.6/microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "/home/jules/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }
